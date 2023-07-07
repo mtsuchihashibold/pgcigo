@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/solarized.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+			  <section>
+				
+                    <h2>囲碁AI作成について</h2>
+
+					<h3>前回までの復習</h3>
+
+					<p>
+					  株式会社ボールド技術部　土橋礼宙
+					</p>
+
+				  </script>
+				</section>
+					  
+				<section data-markdown>
+				  <script type="text/template">
+				
+### 二人零和有限確定完全情報ゲーム（１）
+
+* 先攻・後攻がお互い最善手を打ち続ける
+  * 先攻が必勝/必敗/引き分けが確定する
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 二人零和有限確定完全情報ゲーム（２）
+* 対象は将棋・チェス・オセロ・囲碁などのボードゲーム
+* 原理的（数学的）には先攻が必勝/必敗/引き分けが確定する
+* ただし、組み合わせ爆発を起こすので計算機で計算できない
+				  </script>
+				</section>
+
+				<section data-markdown>
+				  <script type="text/template">
+
+### 二人零和有限確定完全情報ゲーム（３）
+* 囲碁の取りうる盤面数：約2×10の170乗通り
+* 将棋の場合
+
+```
+宇宙が誕生してから現在までの経過時間を
+5000 兆回繰り返しても終わらないほどの
+無尽蔵の計算時間と計算機資源が駆使できるならば、
+将棋のような複雑なゲームの必勝法を求めるアルゴリズムも
+容易に実装できることとなります。
+```
+<p style="font-size: 0.5em;">
+[ゲームを解く！Educational DP Contest K, L 問題の解説](https://qiita.com/drken/items/4e1bcf8413af16cb62da)
+</p>
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 囲碁AI（１）
+* 組み合わせ爆発を起こすので計算機で計算できない
+* 様々な工夫がされてきた
+* 最近AIを使って、「人間のプロ」に勝てる具合にはなった
+  * →完全解析はでいていない
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 囲碁AI（２）
+* AIを使ったコンピュータ囲碁
+* 研究の最前線
+* 「囲碁AIの作り方」が整備されているわけじゃない
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### ボードゲームのAIの作り方（１）
+* ゲーム木
+  * 取りうる手を木として表現したデータ構造
+* 評価関数
+  * その盤面が有利か不利かを数値で評価する関数
+  * その盤面の評価値を算出する
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### ボードゲームのAIの作り方（２）
+* AIの基本的な動作
+* ゲーム木から評価値が有利な手を選んで指していく
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 囲碁のAIの作り方（１）
+* オセロ・チェス・将棋
+  * 盤面を評価する方法が存在する
+  * 評価関数が作れる
+* 囲碁
+  * 盤面を評価する方法が存在しない
+  * 評価関数が作れない？！
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 囲碁のAIの作り方（２）
+* モンテカルロ法
+  * 乱択アルゴリズム
+* モンテカルロ木法
+  * ランダムな手を指してゲーム木を作っていく
+  * 最終局面まで指して勝敗を見てくる
+    * →勝つか負けるかでその手の評価値を作る
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 囲碁のAIの作り方（３）
+* モンテカルロ木法＋ニューラルネット
+  * →AlphaGo
+				  </script>
+				</section>
+				<section data-markdown>
+				  <script type="text/template">
+
+### 今後の課題
+* ５路盤でのAI作成を目指す
+  * →５路盤でモンテカルロ木法を実装した卒研論文がある。
+  * まずはこれをなぞる
+* モンテカルロ木を調べる
+  * 難しそう
+  * →３路盤または３目並べでモンテカルロ木法
+				  </script>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
